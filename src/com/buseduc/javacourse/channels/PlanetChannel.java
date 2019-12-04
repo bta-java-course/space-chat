@@ -3,7 +3,7 @@ package com.buseduc.javacourse.channels;
 import com.buseduc.javacourse.Planet;
 
 public class PlanetChannel extends Channel {
-    Planet planet;
+    private   Planet planet;
 
     public PlanetChannel(Planet planet) {
         super();

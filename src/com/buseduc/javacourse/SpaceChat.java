@@ -10,6 +10,7 @@ import java.util.List;
 public class SpaceChat {
     private List<User> userList;
     private List<Channel> channelList;
+
     public static void main(String[] args) {
         System.out.println("START");
 

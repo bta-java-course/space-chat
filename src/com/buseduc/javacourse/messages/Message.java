@@ -5,9 +5,9 @@ import com.buseduc.javacourse.users.User;
 import java.time.LocalDateTime;
 
 public class Message {
-    String text;
-    User author;
-    LocalDateTime created;
+    private  String text;
+    private  User author;
+    private LocalDateTime created;
 
     public Message(String text, User author) {
         this.text = text;
