@@ -38,4 +38,9 @@ public class Message {
     public void setCreated(LocalDateTime created) {
         this.created = created;
     }
+
+    @Override
+    public String toString() {
+        return  created +  "[" + author + "]: " + text + "\n";
+    }
 }

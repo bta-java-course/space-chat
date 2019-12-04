@@ -6,7 +6,8 @@ public class PlanetChannel extends Channel {
     Planet planet;
 
     public PlanetChannel(Planet planet) {
-        super();
+        super(planet.name());
         this.planet = planet;
     }
+
 }
