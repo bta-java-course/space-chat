@@ -43,7 +43,7 @@ public abstract class Channel implements Runnable{
     }
 
     public void run() {
-        System.out.println("Channel " + this.name + " started");
+//        System.out.println("Channel " + this.name + " started");
         while (true) {
             try {
                 Thread.sleep(3000);

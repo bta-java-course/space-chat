@@ -5,10 +5,10 @@ import com.buseduc.javacourse.channels.MainChannel;
 import com.buseduc.javacourse.channels.PlanetChannel;
 import com.buseduc.javacourse.users.User;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.*;
 
 public class SpaceChat {
     private List<User> userList;
@@ -16,6 +16,7 @@ public class SpaceChat {
     private Map<Planet, Channel> planetChannels;
     private List<Channel> customChannelList;
     private static SpaceChat chatInstance;
+    private Socket socket;
     public static void main(String[] args) {
         SpaceChat chat = SpaceChat.getInstance();
         System.out.println(chat);
@@ -32,10 +33,30 @@ public class SpaceChat {
         }
         customChannelList = new ArrayList<>();
         userList = new ArrayList<>();
+/*
         User first = new User(Planet.MARS, "Vasya");
         userList.add(first);
         Thread userThread = new Thread(first);
         userThread.start();
+*/
+        try {
+        ServerSocket server = new ServerSocket(5000); // создаем сокет
+        System.out.println("Сервер запущен. Ждем клиента ...");
+        while (true) { // сервер не останавливается никогда
+            try {
+                socket = server.accept(); // новый клиент - новое подключение
+                System.out.println("Новый клиент соединился");
+            } catch (IOException e) {
+                System.out.println("I/O error: " + e);
+            }
+            User next = new  User(socket);
+            System.out.println("NEW USER");
+            new Thread(next).start(); // новый поток для клиента
+        }
+    } catch (Exception i) {
+        System.out.println("Ошибка сервера: " + i); // выведем ошибку
+    }
+
     }
 
     public List<User> getUserList() {
@@ -86,4 +107,5 @@ public class SpaceChat {
         }
         return chatInstance;
     }
+
 }
