@@ -1,6 +1,6 @@
 package com.buseduc.javacourse.messages;
 
-import com.buseduc.javacourse.users.User;
+import com.buseduc.javacourse.users.UserServer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class MessageHistory {
     }
 
     public void addMessage(String messageStr) {
-        Message message = new Message(messageStr, User.getBot());
+        Message message = new Message(messageStr, UserServer.getBot());
         history.add(message);
     }
 

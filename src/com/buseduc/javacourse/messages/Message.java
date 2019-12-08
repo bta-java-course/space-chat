@@ -1,15 +1,15 @@
 package com.buseduc.javacourse.messages;
 
-import com.buseduc.javacourse.users.User;
+import com.buseduc.javacourse.users.UserServer;
 
 import java.time.LocalDateTime;
 
 public class Message {
     String text;
-    User author;
+    UserServer author;
     LocalDateTime created;
 
-    public Message(String text, User author) {
+    public Message(String text, UserServer author) {
         this.text = text;
         this.author = author;
         this.created = LocalDateTime.now();
@@ -23,11 +23,11 @@ public class Message {
         this.text = text;
     }
 
-    public User getAuthor() {
+    public UserServer getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(UserServer author) {
         this.author = author;
     }
 

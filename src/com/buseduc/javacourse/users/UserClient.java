@@ -1,5 +1,7 @@
 package com.buseduc.javacourse.users;
 
+import com.buseduc.javacourse.SpaceChat;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -18,18 +20,15 @@ public class UserClient {
     }
 
     public static void main(String[] args) {
-        Runnable clientR = new Runnable() {
-            @Override
-            public void run() {
-                String serverAddress = "10.0.0.39";
-                UserClient client = null;
-                try {
-                    client = new UserClient(serverAddress, 5000);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                client.start();
+        Runnable clientR = () -> {
+            String serverAddress = args.length > 0 ? args[0] : SpaceChat.SERVER_IP;
+            UserClient client = null;
+            try {
+                client = new UserClient(serverAddress, 5000);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            client.start();
         };
         new Thread(clientR).start();
     }
@@ -56,7 +55,6 @@ public class UserClient {
     }
 
     private String getCommand() {
-        System.out.println("Enter command: ");
         Scanner sc = new Scanner(System.in);
         if (sc.hasNext()) {
             return sc.nextLine();

@@ -2,7 +2,7 @@ package com.buseduc.javacourse.channels;
 
 import com.buseduc.javacourse.messages.Message;
 import com.buseduc.javacourse.messages.MessageHistory;
-import com.buseduc.javacourse.users.User;
+import com.buseduc.javacourse.users.UserServer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +10,12 @@ import java.util.List;
 public abstract class Channel implements Runnable{
     String name;
     MessageHistory messageHistory;
-    List<User> userList;
+    List<UserServer> userServerList;
 
     public Channel(String name) {
         this.name = name;
         messageHistory = new MessageHistory();
-        userList = new ArrayList<>();
+        userServerList = new ArrayList<>();
     }
 
     public String getName() {
@@ -34,12 +34,12 @@ public abstract class Channel implements Runnable{
         this.messageHistory = messageHistory;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public List<UserServer> getUserServerList() {
+        return userServerList;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUserServerList(List<UserServer> userServerList) {
+        this.userServerList = userServerList;
     }
 
     public void run() {

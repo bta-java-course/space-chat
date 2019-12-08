@@ -3,7 +3,7 @@ package com.buseduc.javacourse;
 import com.buseduc.javacourse.channels.Channel;
 import com.buseduc.javacourse.channels.MainChannel;
 import com.buseduc.javacourse.channels.PlanetChannel;
-import com.buseduc.javacourse.users.User;
+import com.buseduc.javacourse.users.UserServer;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -11,12 +11,14 @@ import java.net.Socket;
 import java.util.*;
 
 public class SpaceChat {
-    private List<User> userList;
+    private List<UserServer> userServerList;
     private MainChannel mainChannel;
     private Map<Planet, Channel> planetChannels;
     private List<Channel> customChannelList;
-    private static SpaceChat chatInstance;
     private Socket socket;
+    public static final String SERVER_IP = "192.168.1.162";
+//    private static final static String SERVER_IP = "10.0.0.39";
+    private static SpaceChat chatInstance;
     public static void main(String[] args) {
         SpaceChat chat = SpaceChat.getInstance();
         System.out.println(chat);
@@ -32,7 +34,7 @@ public class SpaceChat {
             new Thread(planetChannel).start();
         }
         customChannelList = new ArrayList<>();
-        userList = new ArrayList<>();
+        userServerList = new ArrayList<>();
 /*
         User first = new User(Planet.MARS, "Vasya");
         userList.add(first);
@@ -49,7 +51,7 @@ public class SpaceChat {
             } catch (IOException e) {
                 System.out.println("I/O error: " + e);
             }
-            User next = new  User(socket);
+            UserServer next = new UserServer(socket);
             System.out.println("NEW USER");
             new Thread(next).start(); // новый поток для клиента
         }
@@ -59,12 +61,12 @@ public class SpaceChat {
 
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public List<UserServer> getUserServerList() {
+        return userServerList;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUserServerList(List<UserServer> userServerList) {
+        this.userServerList = userServerList;
     }
 
     public MainChannel getMainChannel() {
@@ -94,7 +96,7 @@ public class SpaceChat {
     @Override
     public String toString() {
         return "SpaceChat{" +
-                "userList=" + userList +
+                "userList=" + userServerList +
                 ", \nmainChannel=" + mainChannel +
                 ", \nplanetChannels=" + planetChannels +
                 ", \ncustomChannelList=" + customChannelList +

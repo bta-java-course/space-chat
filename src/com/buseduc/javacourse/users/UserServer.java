@@ -12,7 +12,7 @@ import java.net.Socket;
 import java.util.Map;
 import java.util.Scanner;
 
-public class User implements Runnable {
+public class UserServer implements Runnable {
     private Planet planet;
     private String name;
     private boolean isActive;
@@ -21,22 +21,22 @@ public class User implements Runnable {
     private DataOutputStream out;
 
 
-    private static final User bot = new User(null, "SpaceChat bot");
+    private static final UserServer bot = new UserServer(null, "SpaceChat bot");
 
-    public User(Planet planet, String name) {
+    public UserServer(Planet planet, String name) {
         this.planet = planet;
         this.name = name;
         this.isActive = true;
     }
 
-    public User(Socket socket) throws IOException {
+    public UserServer(Socket socket) throws IOException {
         this.socket= socket;
         this.out = new DataOutputStream(socket.getOutputStream());
         this.in = new DataInputStream( new BufferedInputStream(socket.getInputStream()));
     }
 
 
-    public static User getBot() {
+    public static UserServer getBot() {
         return bot;
     }
 
@@ -62,39 +62,21 @@ public class User implements Runnable {
                 planetReady = true;
             }
             System.out.println(this);
-
-
-/*
-        while(!"q".equals(command)) {
-            System.out.println("Input your name:");
-            command = getCommand();
-            this.name = command;
-            System.out.println("Input your planet");
-            command = getCommand();
-            boolean planetReady = false;
-            while(!planetReady) {
-                Planet found;
-                try {
-                    found = Planet.valueOf(command.toUpperCase());
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Input your planet");
-                    continue;
-                }
-                this.planet = found;
-            }
-            if(command.startsWith("/join ")) {
-                String planetName = command.substring(5);
-                Planet p = Planet.valueOf(planetName);
-                SpaceChat chat = SpaceChat.getInstance();
-                Map<Planet, Channel> channels = chat.getPlanetChannels();
-                Channel channel = channels.get(p);
-                Subscription subscription = new Subscription(channel);
-                subscription.start();
+            while(command != "/exit") {
+                command = in.readUTF();
+                if(command.startsWith("/join ")) {
+                    String planetName = command.substring(5);
+                    Planet p = Planet.valueOf(planetName);
+                    SpaceChat chat = SpaceChat.getInstance();
+                    Map<Planet, Channel> channels = chat.getPlanetChannels();
+                    Channel channel = channels.get(p);
+                    Subscription subscription = new Subscription(channel);
+                    subscription.start();
 //                System.out.println(channel.getMessageHistory());
+                }
+
             }
-        }
-*/
-        System.out.println("User exit");
+            System.out.println("User exit");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -105,8 +87,8 @@ public class User implements Runnable {
         String line = "";
         try {
             while (!line.equals("s")) { // пока клиент не ввел "s"
-                    line = in.readUTF();
-                    System.out.println("Сервер отвечает: " + line);
+                line = in.readUTF();
+                System.out.println("Сервер отвечает: " + line);
             }
         } catch (IOException e) {
             System.out.println("Ошибка сервера: " + e); // выведем ошибку
