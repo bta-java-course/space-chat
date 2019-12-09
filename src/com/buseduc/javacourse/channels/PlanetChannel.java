@@ -9,5 +9,4 @@ public class PlanetChannel extends Channel {
         super(planet.name());
         this.planet = planet;
     }
-
 }

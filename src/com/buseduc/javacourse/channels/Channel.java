@@ -7,7 +7,7 @@ import com.buseduc.javacourse.users.UserServer;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Channel implements Runnable{
+public abstract class Channel implements Runnable {
     String name;
     MessageHistory messageHistory;
     List<UserServer> userServerList;
@@ -43,7 +43,6 @@ public abstract class Channel implements Runnable{
     }
 
     public void run() {
-//        System.out.println("Channel " + this.name + " started");
         while (true) {
             try {
                 Thread.sleep(3000);
@@ -51,7 +50,6 @@ public abstract class Channel implements Runnable{
                 e.printStackTrace();
             }
             messageHistory.addMessage(this.name);
-//            System.out.println("Channel " + this.name + " is alive");
         }
     }
 

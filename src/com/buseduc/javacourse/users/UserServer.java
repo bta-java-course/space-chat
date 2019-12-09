@@ -30,9 +30,9 @@ public class UserServer implements Runnable {
     }
 
     public UserServer(Socket socket) throws IOException {
-        this.socket= socket;
+        this.socket = socket;
         this.out = new DataOutputStream(socket.getOutputStream());
-        this.in = new DataInputStream( new BufferedInputStream(socket.getInputStream()));
+        this.in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
     }
 
 
@@ -50,7 +50,7 @@ public class UserServer implements Runnable {
             out.writeUTF("Input your planet");
             command = in.readUTF();
             boolean planetReady = false;
-            while(!planetReady) {
+            while (!planetReady) {
                 Planet found;
                 try {
                     found = Planet.valueOf(command.toUpperCase());
@@ -62,9 +62,9 @@ public class UserServer implements Runnable {
                 planetReady = true;
             }
             System.out.println(this);
-            while(command != "/exit") {
+            while (command != "/exit") {
                 command = in.readUTF();
-                if(command.startsWith("/join ")) {
+                if (command.startsWith("/join ")) {
                     String planetName = command.substring(5);
                     Planet p = Planet.valueOf(planetName);
                     SpaceChat chat = SpaceChat.getInstance();
@@ -72,15 +72,12 @@ public class UserServer implements Runnable {
                     Channel channel = channels.get(p);
                     Subscription subscription = new Subscription(channel);
                     subscription.start();
-//                System.out.println(channel.getMessageHistory());
                 }
-
             }
             System.out.println("User exit");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void readClientInput() {
@@ -94,7 +91,6 @@ public class UserServer implements Runnable {
             System.out.println("Ошибка сервера: " + e); // выведем ошибку
         }
     }
-
 
     private String getCommand() {
         System.out.println("Enter command: ");

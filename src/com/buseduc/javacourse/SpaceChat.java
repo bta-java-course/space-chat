@@ -17,8 +17,8 @@ public class SpaceChat {
     private List<Channel> customChannelList;
     private Socket socket;
     public static final String SERVER_IP = "192.168.1.162";
-//    private static final static String SERVER_IP = "10.0.0.39";
     private static SpaceChat chatInstance;
+
     public static void main(String[] args) {
         SpaceChat chat = SpaceChat.getInstance();
         System.out.println(chat);
@@ -28,36 +28,31 @@ public class SpaceChat {
         mainChannel = new MainChannel("main");
         new Thread(mainChannel).start();
         planetChannels = new HashMap<>();
-        for(Planet p : Planet.values()) {
+        for (Planet p : Planet.values()) {
             Channel planetChannel = new PlanetChannel(p);
             planetChannels.put(p, planetChannel);
             new Thread(planetChannel).start();
         }
         customChannelList = new ArrayList<>();
         userServerList = new ArrayList<>();
-/*
-        User first = new User(Planet.MARS, "Vasya");
-        userList.add(first);
-        Thread userThread = new Thread(first);
-        userThread.start();
-*/
+
         try {
-        ServerSocket server = new ServerSocket(5000); // создаем сокет
-        System.out.println("Сервер запущен. Ждем клиента ...");
-        while (true) { // сервер не останавливается никогда
-            try {
-                socket = server.accept(); // новый клиент - новое подключение
-                System.out.println("Новый клиент соединился");
-            } catch (IOException e) {
-                System.out.println("I/O error: " + e);
+            ServerSocket server = new ServerSocket(5000); // создаем сокет
+            System.out.println("Сервер запущен. Ждем клиента ...");
+            while (true) { // сервер не останавливается никогда
+                try {
+                    socket = server.accept(); // новый клиент - новое подключение
+                    System.out.println("Новый клиент соединился");
+                } catch (IOException e) {
+                    System.out.println("I/O error: " + e);
+                }
+                UserServer next = new UserServer(socket);
+                System.out.println("NEW USER");
+                new Thread(next).start(); // новый поток для клиента
             }
-            UserServer next = new UserServer(socket);
-            System.out.println("NEW USER");
-            new Thread(next).start(); // новый поток для клиента
+        } catch (Exception i) {
+            System.out.println("Ошибка сервера: " + i); // выведем ошибку
         }
-    } catch (Exception i) {
-        System.out.println("Ошибка сервера: " + i); // выведем ошибку
-    }
 
     }
 
@@ -104,7 +99,7 @@ public class SpaceChat {
     }
 
     public static SpaceChat getInstance() {
-        if(chatInstance == null) {
+        if (chatInstance == null) {
             chatInstance = new SpaceChat();
         }
         return chatInstance;

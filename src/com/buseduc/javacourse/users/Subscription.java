@@ -2,7 +2,7 @@ package com.buseduc.javacourse.users;
 
 import com.buseduc.javacourse.channels.Channel;
 
-public class Subscription extends Thread{
+public class Subscription extends Thread {
     private Channel channel;
 
     public Subscription(Channel channel) {

@@ -35,12 +35,12 @@ public class UserClient {
 
     public void start() {
         try {
-        String command = "";
-        String serverCommand = in.readUTF();
-        System.out.println(serverCommand);
-        command = getCommand();
-        out.writeUTF(command);
-        serverCommand = in.readUTF();
+            String command = "";
+            String serverCommand = in.readUTF();
+            System.out.println(serverCommand);
+            command = getCommand();
+            out.writeUTF(command);
+            serverCommand = in.readUTF();
             System.out.println(serverCommand);
             command = getCommand();
             out.writeUTF(command);
@@ -48,10 +48,10 @@ public class UserClient {
             while (!command.toLowerCase().equals("s")) { // s -- завершение ввода
                 command = getCommand();
                 out.writeUTF(command);     // запишем ее в поток
-        }
-        out.close();
-        socket.close();
-        } catch(IOException i) { /* МОЛЧАЛИВАЯ ОШИБКА*/ }
+            }
+            out.close();
+            socket.close();
+        } catch (IOException i) { /* МОЛЧАЛИВАЯ ОШИБКА*/ }
     }
 
     private String getCommand() {
@@ -61,7 +61,4 @@ public class UserClient {
         }
         return "q";
     }
-
-
-
 }

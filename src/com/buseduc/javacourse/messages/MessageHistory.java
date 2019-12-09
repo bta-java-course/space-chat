@@ -27,7 +27,6 @@ public class MessageHistory {
 
     @Override
     public String toString() {
-
         final String[] ret = {""};
         history.stream().forEach(msg -> ret[0] += msg.toString() + "\n");
         return ret[0];
