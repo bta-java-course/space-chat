@@ -2,6 +2,7 @@ package com.buseduc.javacourse.channels;
 
 import com.buseduc.javacourse.messages.Message;
 import com.buseduc.javacourse.messages.MessageHistory;
+import com.buseduc.javacourse.users.Subscription;
 import com.buseduc.javacourse.users.UserServer;
 
 import java.util.ArrayList;
@@ -10,12 +11,13 @@ import java.util.List;
 public abstract class Channel implements Runnable{
     String name;
     MessageHistory messageHistory;
-    List<UserServer> userServerList;
+    List<Subscription> subscriptionList;
+
 
     public Channel(String name) {
         this.name = name;
         messageHistory = new MessageHistory();
-        userServerList = new ArrayList<>();
+        subscriptionList = new ArrayList<>();
     }
 
     public String getName() {
@@ -34,13 +36,27 @@ public abstract class Channel implements Runnable{
         this.messageHistory = messageHistory;
     }
 
-    public List<UserServer> getUserServerList() {
-        return userServerList;
+    public List<Subscription> getUserServerList() {
+        return subscriptionList;
     }
 
-    public void setUserServerList(List<UserServer> userServerList) {
-        this.userServerList = userServerList;
+    public void publishMessage(Message message) {
+        messageHistory.addMessage(message);
+        subscriptionList.stream().forEach(sub -> sub.showNewMessage(message));
     }
+
+    public void addSubscription(Subscription subscription) {
+        subscriptionList.add(subscription);
+    }
+
+    public void remove(Subscription subscription) {
+        for (Subscription sub : subscriptionList) {
+            if (sub.equals(subscription)) {
+                subscriptionList.remove(subscription);
+            }
+        }
+    }
+
 
     public void run() {
 //        System.out.println("Channel " + this.name + " started");
@@ -50,7 +66,7 @@ public abstract class Channel implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            messageHistory.addMessage(this.name);
+//            messageHistory.addMessage(this.name);
 //            System.out.println("Channel " + this.name + " is alive");
         }
     }

@@ -3,6 +3,7 @@ package com.buseduc.javacourse;
 import com.buseduc.javacourse.channels.Channel;
 import com.buseduc.javacourse.channels.MainChannel;
 import com.buseduc.javacourse.channels.PlanetChannel;
+import com.buseduc.javacourse.users.UserRegistry;
 import com.buseduc.javacourse.users.UserServer;
 
 import java.io.IOException;
@@ -16,7 +17,8 @@ public class SpaceChat {
     private Map<Planet, Channel> planetChannels;
     private List<Channel> customChannelList;
     private Socket socket;
-    public static final String SERVER_IP = "192.168.1.162";
+    public static final String SERVER_IP = "10.0.0.38";
+    public static final int PORT = 5000;
 //    private static final static String SERVER_IP = "10.0.0.39";
     private static SpaceChat chatInstance;
     public static void main(String[] args) {
@@ -25,6 +27,7 @@ public class SpaceChat {
     }
 
     public SpaceChat() {
+        UserRegistry userRegistry = UserRegistry.getInstance();
         mainChannel = new MainChannel("main");
         new Thread(mainChannel).start();
         planetChannels = new HashMap<>();
@@ -35,14 +38,8 @@ public class SpaceChat {
         }
         customChannelList = new ArrayList<>();
         userServerList = new ArrayList<>();
-/*
-        User first = new User(Planet.MARS, "Vasya");
-        userList.add(first);
-        Thread userThread = new Thread(first);
-        userThread.start();
-*/
         try {
-        ServerSocket server = new ServerSocket(5000); // создаем сокет
+        ServerSocket server = new ServerSocket(PORT); // создаем сокет
         System.out.println("Сервер запущен. Ждем клиента ...");
         while (true) { // сервер не останавливается никогда
             try {

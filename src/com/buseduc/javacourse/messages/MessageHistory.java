@@ -20,8 +20,7 @@ public class MessageHistory {
         this.history = history;
     }
 
-    public void addMessage(String messageStr) {
-        Message message = new Message(messageStr, UserServer.getBot());
+    public void addMessage(Message message) {
         history.add(message);
     }
 

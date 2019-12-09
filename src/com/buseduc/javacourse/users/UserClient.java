@@ -1,6 +1,7 @@
 package com.buseduc.javacourse.users;
 
 import com.buseduc.javacourse.SpaceChat;
+import org.omg.PortableServer.POA;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -24,7 +25,7 @@ public class UserClient {
             String serverAddress = args.length > 0 ? args[0] : SpaceChat.SERVER_IP;
             UserClient client = null;
             try {
-                client = new UserClient(serverAddress, 5000);
+                client = new UserClient(serverAddress, SpaceChat.PORT);
             } catch (IOException e) {
                 e.printStackTrace();
             }
