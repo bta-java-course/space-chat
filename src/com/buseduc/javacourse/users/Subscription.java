@@ -23,7 +23,7 @@ public class Subscription extends Thread{
         this.userServer = userServer;
     }
 
-    public void run() {
+    public synchronized void run() {
         try {
             wait();
         } catch (InterruptedException e) {
@@ -31,7 +31,7 @@ public class Subscription extends Thread{
         }
     }
 
-    public void publishMessage(Message message) {
+    public synchronized void publishMessage(Message message) {
         this.notify();
         this.channel.publishMessage(message);
     }

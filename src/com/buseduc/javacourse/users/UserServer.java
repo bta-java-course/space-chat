@@ -110,28 +110,7 @@ public class UserServer implements Runnable {
 
     }
 
-    public void readClientInput() {
-        String line = "";
-        try {
-            while (!line.equals("s")) { // пока клиент не ввел "s"
-                line = in.readUTF();
-                System.out.println("Сервер отвечает: " + line);
-            }
-        } catch (IOException e) {
-            System.out.println("Ошибка сервера: " + e); // выведем ошибку
-        }
-    }
-
-
-    private String getCommand() {
-        System.out.println("Enter command: ");
-        Scanner sc = new Scanner(System.in);
-        if (sc.hasNext()) {
-            return sc.nextLine();
-        }
-        return "q";
-    }
-
+    
     public Planet getPlanet() {
         return planet;
     }
