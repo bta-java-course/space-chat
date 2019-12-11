@@ -110,7 +110,7 @@ public class UserServer implements Runnable {
 
     }
 
-    
+
     public Planet getPlanet() {
         return planet;
     }

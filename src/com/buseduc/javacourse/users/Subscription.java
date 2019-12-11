@@ -24,15 +24,17 @@ public class Subscription extends Thread{
     }
 
     public synchronized void run() {
+/*
         try {
-            wait();
+//            wait();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+*/
     }
 
     public synchronized void publishMessage(Message message) {
-        this.notify();
+//        this.notify();
         this.channel.publishMessage(message);
     }
 
