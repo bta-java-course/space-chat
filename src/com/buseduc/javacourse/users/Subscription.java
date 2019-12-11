@@ -6,6 +6,7 @@ import com.buseduc.javacourse.messages.Message;
 import java.util.Objects;
 
 public class Subscription extends Thread{
+
     private Channel channel;
     private UserServer userServer;
 
@@ -13,6 +14,13 @@ public class Subscription extends Thread{
         this.channel = channel;
         this.userServer = userServer;
         channel.addSubscription(this);
+    }
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(Channel channel) {
+        this.channel = channel;
     }
 
     public UserServer getUserServer() {
@@ -44,7 +52,7 @@ public class Subscription extends Thread{
     }
 
     public void showNewMessage(Message message) {
-        System.out.println(message);
+        userServer.sendMessageToClient(message.toString());
     }
     @Override
     public boolean equals(Object o) {

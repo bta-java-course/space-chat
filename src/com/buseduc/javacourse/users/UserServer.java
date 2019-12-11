@@ -59,6 +59,7 @@ public class UserServer implements Runnable {
             out.writeUTF("Input your planet");
             boolean planetReady = false;
             while(!planetReady) {
+                out.writeUTF("Input command or message");
                 command = in.readUTF();
                 Planet found;
                 try {
@@ -76,12 +77,20 @@ public class UserServer implements Runnable {
 
             while(!"/exit".equals(command)) {
                 parseUserInput(command);
+
             }
             System.out.println("User exit");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+    public void sendMessageToClient(String message) {
+        try {
+            out.writeUTF(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void parseUserInput(String command) throws IOException {
@@ -99,10 +108,14 @@ public class UserServer implements Runnable {
             } else if ("/leave".equals(command)) {
                 this.subscription.remove();
             }
+            out.writeUTF("command done: " + command);
 
         } else if(this.subscription != null) {
             Message message = new Message(command, this);
             this.subscription.publishMessage(message);
+            String channelName = subscription.getChannel().getName();
+
+            System.out.println("CHANNEL " + channelName + ": " + message);
         }
         if(command.startsWith("/join ")) {
 //                System.out.println(channel.getMessageHistory());

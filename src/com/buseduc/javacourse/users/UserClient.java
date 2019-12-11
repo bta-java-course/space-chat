@@ -45,10 +45,15 @@ public class UserClient {
             System.out.println(serverCommand);
             command = getCommand();
             out.writeUTF(command);
+            serverCommand = in.readUTF();
+            System.out.println(serverCommand);
 
             while (!command.toLowerCase().equals("s")) { // s -- завершение ввода
+//
                 command = getCommand();
                 out.writeUTF(command);     // запишем ее в поток
+                serverCommand = in.readUTF();
+                System.out.println(serverCommand);
         }
         out.close();
         socket.close();
@@ -58,6 +63,7 @@ public class UserClient {
     private String getCommand() {
         Scanner sc = new Scanner(System.in);
         if (sc.hasNext()) {
+
             return sc.nextLine();
         }
         return "q";
