@@ -1,0 +1,9 @@
+.label {
+	-fx-opacity: 0.5;
+}
+.label:focused {
+	-fx-opacity: 1;
+}
+.label:hover {
+	-fx-opacity: 1;
+}

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #041527;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ee.gr.GUI.controllers.channelsController">
+   <children>
+      <Label layoutX="83.0" layoutY="22.0" prefHeight="47.0" prefWidth="150.0" text="SPACECHAT" textFill="#11c9f7">
+         <font>
+            <Font name="Arial Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="86.0" layoutY="14.0" prefHeight="25.0" prefWidth="132.0" text="FOR THE WHOLE UNIVERSE" textFill="#f0f7ef">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="81.0" fitWidth="81.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/planet.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="351.0" layoutY="579.0" text="© TINKYWINKY191 2019" textFill="#314d6a">
+         <font>
+            <Font name="Arial Black" size="9.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelUniverse" layoutX="350.0" layoutY="250.0" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" onMousePressed="#changeToUniverse" prefHeight="100.0" prefWidth="100.0" stylesheets="@css/Smiles.css">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/planets/universe.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="labelEarth" layoutX="360.0" layoutY="94.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onMousePressed="#changeToEarth" prefHeight="80.0" prefWidth="80.0" stylesheets="@css/Smiles.css">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/planets/earth.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="labelJupiter" layoutX="360.0" layoutY="426.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onMousePressed="#changeToJupiter" prefHeight="80.0" prefWidth="80.0" stylesheets="@css/Smiles.css">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/planets/jupiter.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="labelMars" layoutX="194.0" layoutY="260.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onMousePressed="#changeToMars" prefHeight="80.0" prefWidth="80.0" stylesheets="@css/Smiles.css">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/planets/mars.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="labelMercury" layoutX="526.0" layoutY="260.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onMousePressed="#changeToMercury" prefHeight="80.0" prefWidth="80.0" stylesheets="@css/Smiles.css">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/planets/mercury.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="labelNeptune" layoutX="244.0" layoutY="144.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onMousePressed="#changeToNeptune" prefHeight="80.0" prefWidth="80.0" stylesheets="@css/Smiles.css">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/planets/neptune.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="labelSaturn" layoutX="473.0" layoutY="144.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onMousePressed="#changeToSaturn" prefHeight="80.0" prefWidth="80.0" stylesheets="@css/Smiles.css">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/planets/saturn.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="labelVenus" layoutX="486.0" layoutY="375.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onMousePressed="#changeToVenus" prefHeight="80.0" prefWidth="80.0" stylesheets="@css/Smiles.css">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/planets/venus.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="labelUranus" layoutX="234.0" layoutY="375.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onMousePressed="#changeToUranus" prefHeight="80.0" prefWidth="80.0" stylesheets="@css/Smiles.css">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/planets/uranus.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="labelOther" layoutX="641.0" layoutY="455.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onMousePressed="#changeToOther" prefHeight="80.0" prefWidth="80.0" stylesheets="@css/Smiles.css">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/planets/other.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label layoutX="370.0" layoutY="75.0" opacity="0.75" text="EARTH" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="244.0" layoutY="126.0" opacity="0.75" text="NEPTUNE" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="209.0" layoutY="241.0" opacity="0.75" text="MARS" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="355.0" layoutY="225.0" opacity="0.75" text="UNIVERSE" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="237.0" layoutY="368.0" opacity="0.75" text="URANUS" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="364.0" layoutY="406.0" opacity="0.75" text="JUPITER" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="497.0" layoutY="355.0" opacity="0.75" text="VENUS" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="524.0" layoutY="242.0" opacity="0.75" text="MERCURY" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="477.0" layoutY="140.0" opacity="0.75" text="SATURN" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="616.0" layoutY="439.0" opacity="0.75" text="OTHER PLANET" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
