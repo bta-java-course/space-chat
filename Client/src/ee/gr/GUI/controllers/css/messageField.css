@@ -1,0 +1,36 @@
+.text-area {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent, #dbf8f5, transparent, #dbf8f5;
+    -fx-prompt-text-fill: #5d6063;
+}
+
+.text-area .content {
+    -fx-background-color: transparent, #dbf8f5, transparent, #dbf8f5;
+}
+
+.text-area:focused .content {
+    -fx-background-color: transparent, #dbf8f5, transparent, #dbf8f5;
+}
+
+.text-area:focused {
+    -fx-highlight-fill: #7ecfff;
+    -fx-prompt-text-fill: #dbf8f5;
+}
+
+.text-area .content {
+    -fx-padding: 10px;
+    -fx-text-fill: gray;
+    -fx-highlight-fill: #7ecfff;
+}
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: #dbf8f5;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color:  #0bb96f;
+    -fx-background-radius: 5em;
+}

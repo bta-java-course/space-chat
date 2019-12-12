@@ -1,0 +1,15 @@
+.button {
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color; 
+    -fx-background-insets: 0, 0, 0;
+    -fx-text-fill: white;
+}
+.button:focused {
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color; 
+    -fx-background-insets: 0, 0, 0;
+    -fx-effect: null;
+}
+.button:hover {
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color; 
+    -fx-background-insets: 0, 0, 0;
+    -fx-text-fill: #4ccf97;
+}
