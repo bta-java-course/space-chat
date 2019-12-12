@@ -96,7 +96,7 @@ public class mainChannelController implements Initializable {
         initActionSmiles();
         startListeningForMsg();
         startLookingForUsers();
-        startLookingForDisconnect();
+        //startLookingForDisconnect();
         sendLogInUpdate();
     }
 
@@ -283,8 +283,8 @@ public class mainChannelController implements Initializable {
         outPut.writeObject(new ChannelUpdate(launchInstance.getActiveUser(), currentChannel, ChannelUpdate.Action.USER_LOG_OUT));
         chatBox.getChildren().clear();
         launchInstance.getActiveUser().setLoggedOut(true);
-        listenerForDisconnect.stop();
-        listenerForDisconnect = null;
+        //listenerForDisconnect.stop();
+        //listenerForDisconnect = null;
         listenerForChatBox.stop();
         listenerForChatBox = null;
         listenerForUsersBox.stop();
