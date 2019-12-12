@@ -32,18 +32,26 @@ public class Subscription extends Thread{
     }
 
     public synchronized void run() {
-/*
-        try {
-//            wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while(true) {
+            try {
+                Thread.sleep(200);
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+//            messageHistory.addMessage(this.name);
+//            System.out.println("Channel " + this.name + " is alive");
+            }
         }
-*/
     }
 
     public synchronized void publishMessage(Message message) {
-//        this.notify();
-        this.channel.publishMessage(message);
+        try {
+            this.notify();
+            this.channel.publishMessage(message);
+            this.wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void remove() {

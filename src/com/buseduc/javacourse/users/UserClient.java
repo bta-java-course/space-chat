@@ -1,7 +1,6 @@
 package com.buseduc.javacourse.users;
 
 import com.buseduc.javacourse.SpaceChat;
-import org.omg.PortableServer.POA;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -18,6 +17,22 @@ public class UserClient {
         Socket socket = new Socket(address, port);
         this.out = new DataOutputStream(socket.getOutputStream());
         this.in = new DataInputStream(socket.getInputStream());
+    }
+
+    public DataInputStream getIn() {
+        return in;
+    }
+
+    public void setIn(DataInputStream in) {
+        this.in = in;
+    }
+
+    public DataOutputStream getOut() {
+        return out;
+    }
+
+    public void setOut(DataOutputStream out) {
+        this.out = out;
     }
 
     public static void main(String[] args) {
@@ -47,20 +62,27 @@ public class UserClient {
             out.writeUTF(command);
             serverCommand = in.readUTF();
             System.out.println(serverCommand);
-
             while (!command.toLowerCase().equals("s")) { // s -- завершение ввода
 //
                 command = getCommand();
                 out.writeUTF(command);     // запишем ее в поток
                 serverCommand = in.readUTF();
-                System.out.println(serverCommand);
+                if (SpaceChat.SUBSCRIPTION_OK.equals(serverCommand)) {
+                    SubscriptionClient subscriptionClient = new SubscriptionClient(this);
+                    subscriptionClient.start();
+                    System.out.println(serverCommand);
+                    while(true) {
+                        command = getCommand();
+                        out.writeUTF(command);
+                    }
+                }
         }
         out.close();
         socket.close();
         } catch(IOException i) { /* МОЛЧАЛИВАЯ ОШИБКА*/ }
     }
 
-    private String getCommand() {
+    public String getCommand() {
         Scanner sc = new Scanner(System.in);
         if (sc.hasNext()) {
 

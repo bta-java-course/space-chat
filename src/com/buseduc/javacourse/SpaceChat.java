@@ -17,7 +17,8 @@ public class SpaceChat {
     private Map<Planet, Channel> planetChannels;
     private List<Channel> customChannelList;
     private Socket socket;
-    public static final String SERVER_IP = "10.0.0.39";
+    public static final String SERVER_IP = "10.0.0.33";
+    public static final String SUBSCRIPTION_OK = "/subscribed";
     public static final int PORT = 5000;
 //    private static final static String SERVER_IP = "10.0.0.39";
     private static SpaceChat chatInstance;
@@ -29,12 +30,12 @@ public class SpaceChat {
     public SpaceChat() {
         UserRegistry userRegistry = UserRegistry.getInstance();
         mainChannel = new MainChannel("main");
-        new Thread(mainChannel).start();
+//        new Thread(mainChannel).start();
         planetChannels = new HashMap<>();
         for(Planet p : Planet.values()) {
             Channel planetChannel = new PlanetChannel(p);
             planetChannels.put(p, planetChannel);
-            new Thread(planetChannel).start();
+//            new Thread(planetChannel).start();
         }
         customChannelList = new ArrayList<>();
         userServerList = new ArrayList<>();

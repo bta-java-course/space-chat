@@ -105,10 +105,10 @@ public class UserServer implements Runnable {
                 Subscription subscription = new Subscription(channel, this);
                 this.subscription = subscription;
                 subscription.start();
+                out.writeUTF(SpaceChat.SUBSCRIPTION_OK);
             } else if ("/leave".equals(command)) {
                 this.subscription.remove();
             }
-            out.writeUTF("command done: " + command);
 
         } else if(this.subscription != null) {
             Message message = new Message(command, this);
